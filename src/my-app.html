@@ -22,16 +22,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
 
-<link rel="lazy-import" href="my-view1.html">
-<link rel="lazy-import" href="my-view2.html">
-<link rel="lazy-import" href="my-view3.html">
+<link rel="lazy-import" href="my-dashboard.html">
+<link rel="lazy-import" href="my-music-browser.html">
+<link rel="lazy-import" href="my-profile.html">
+<link rel="lazy-import" href="my-settings.html">
 <link rel="lazy-import" href="my-view404.html">
 
 <dom-module id="my-app">
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
+        --app-primary-color: #602f6b;
         --app-secondary-color: black;
 
         display: block;
@@ -40,18 +41,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app-drawer-layout:not([narrow]) [drawer-toggle] {
         display: none;
       }
-
+      
       app-header {
-        color: #fff;
+        color: rgb(0, 0, 0);
         background-color: var(--app-primary-color);
+        font-weight: bold;
       }
 
       app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
+        --paper-icon-button-ink-color: black;
       }
 
       .drawer-list {
         margin: 0 20px;
+        background-color: #990066;
       }
 
       .drawer-list a {
@@ -85,9 +88,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="[[rootPath]]view1">View One</a>
-          <a name="view2" href="[[rootPath]]view2">View Two</a>
-          <a name="view3" href="[[rootPath]]view3">View Three</a>
+          <a name="dashboard" href="[[rootPath]]dashboard">Dashboard</a>
+          <a name="music-browser" href="[[rootPath]]music-browser">Browse</a>
+          <a name="profile" href="[[rootPath]]profile">Profile</a>
+          <a name="settings" href="[[rootPath]]settings">Settings</a>
         </iron-selector>
       </app-drawer>
 
@@ -97,7 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>My App</div>
+            <div main-title>IndieVibe</div>
           </app-toolbar>
         </app-header>
 
@@ -106,9 +110,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
-          <my-view1 name="view1"></my-view1>
-          <my-view2 name="view2"></my-view2>
-          <my-view3 name="view3"></my-view3>
+          <my-dashboard name="dashboard"></my-dashboard>
+          <my-music-browser name="music-browser"></my-music-browser>
+          <my-profile name="profile"></my-profile>
+          <my-settings name="settings"></my-settings>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -146,8 +151,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _routePageChanged(page) {
         // If no page was found in the route data, page will be an empty string.
-        // Default to 'view1' in that case.
-        this.page = page || 'view1';
+        // Default to 'dash' in that case.
+        this.page = page || 'dashboard';
 
         // Close a non-persistent drawer when the page & route are changed.
         if (!this.$.drawer.persistent) {
