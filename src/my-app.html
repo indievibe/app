@@ -20,6 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-audio-player/paper-audio-player.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="my-dashboard.html">
@@ -97,6 +98,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
+
+        <paper-audio-player src="http://listen.radionomy.com/blacklabelfm"></paper-audio-player>
 
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
